@@ -8,7 +8,7 @@ services:
       dockerfile: .deliveroo-local/Dockerfile
     command: foreman start --env /dev/null web
     env_file: .deliveroo-local/.env
-    image: deliveroo-local/routemaster
+    image: deliveroo-local/routemaster:latest
     labels:
       - "traefik.docker.network=deliveroo-dns"
       - "traefik.frontend.rule=Host:routemaster.deliveroo-local.com"
@@ -23,7 +23,7 @@ services:
       context: ./
       dockerfile: .deliveroo-local/Dockerfile
     command: foreman start --env /dev/null worker
-    image: deliveroo-local/routemaster
+    image: deliveroo-local/routemaster:latest
     env_file: .deliveroo-local/.env
     networks:
       dns:
@@ -35,7 +35,7 @@ services:
       context: ./
       dockerfile: .deliveroo-local/Dockerfile
     command: "true"
-    image: deliveroo-local/routemaster
+    image: deliveroo-local/routemaster:latest
     depends_on:
       - redis
     env_file: .deliveroo-local/.env.test
