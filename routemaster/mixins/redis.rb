@@ -14,7 +14,7 @@ module Routemaster
       def _redis
         @@_redis ||=
         ConnectionPool.wrap(size: Routemaster.config[:redis_pool_size], timeout: 2) do
-          ::Redis.new(url: ENV.ifetch('ROUTEMASTER_REDIS_URL'))
+          ::Redis.new(url: ENV.ifetch(ENV['REDIS_ENV_KEY']))
         end
       end
 
